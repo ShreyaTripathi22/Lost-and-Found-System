@@ -12,10 +12,10 @@ const Navbar = () => {
    };
 
   return (
-    <div className = 'flex justify-between w-full items-center mx-auto h-12 px-10 py-12 '>
-      <h1 className='text-6xl w-full font-bold'>FoundIt</h1>
+    <div className="absolute top-0 left-0 w-full z-50 flex justify-between items-center px-10 py-6 bg-transparent text-white">
+      <h1 className='text-5xl w-full font-bold'>FoundIt</h1>
         <ul className='hidden md:flex'>
-          <li className='p-4 text-2xl  cursor-pointer hover:text-blue-600'>Home</li>
+          <li className='p-4 text-2xl text-font:spoppins cursor-pointer hover:text-blue-600'>Home</li>
           <li className='p-4 text-2xl cursor-pointer hover:text-blue-600'>
           <Link to="/lost">Lost</Link>
             </li>
