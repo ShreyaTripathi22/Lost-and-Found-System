@@ -16,7 +16,7 @@ export const Hero = () => {
                             loop>
         </ReactTyped>
        </div>
-      <p className='text-gray-500 font-bold text-2xl mx-auto mt-6'>Report your lost items and find what others have found.</p>
+      <p className='text-gray-500 font-bold text-2xl mx-auto mt-6'>AI-powered & community-driven platform to report and recover lost items in public places.</p>
       <div className='flex justify-center'>
         <button className="bg-[#61d2ac] text-black font-semibold py-2 px-4 rounded-lg w-32 mt-5 hover:bg-[#d385df] transition-all">
           Explore
