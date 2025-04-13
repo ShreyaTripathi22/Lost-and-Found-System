@@ -1,10 +1,10 @@
 import React from 'react';
 import {ReactTyped} from "react-typed";
 
-export const Hero = () => {
+ const Hero = () => {
   return (
     <div className="relative h-screen bg-[linear-gradient(to_bottom,#000,#200D42_34%,#4F21A1_65%,#A46EDB_82%)] flex items-center justify-center">
-    <div className='w-full max-w-[800px] h-[345px] text-center mx-auto flex flex-col  items-centre sm:py-5'>
+    <div className='w-full max-w-[800px] h-[345px] text-center mx-auto flex flex-col  items-center sm:py-5'>
        <p className='text-[#a124e9] font-bold p-1 text-4xl'>LOST SOMETHING SPECIAL?</p>
        
        <p className='font-bold text-7xl p-2'>We've Found It!</p> 
