@@ -23,7 +23,10 @@ const Navbar = () => {
             <Link to="/found">Found</Link>
           </li>
           <li className='p-4 text-2xl  cursor-pointer hover:text-blue-600'>Contact</li>
-          <li className='p-4 text-2xl  cursor-pointer hover:text-blue-600'>SignIn</li>
+          <li className='p-4 text-2xl  cursor-pointer hover:text-blue-600'>
+            <Link to="/signin">SignIn</Link>
+          </li>
+          
         </ul>
         <div onClick={handleNav} className='block md:hidden mx-auto px-10'>
           {!nav? <LuMenu size={25}/>:<IoMdClose size={25} />}

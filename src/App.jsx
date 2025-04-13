@@ -6,6 +6,7 @@ import Hero from './components/Hero';
 import Lost from './Pages/Lost';
 import Found from './Pages/Found';
 import Home from './Pages/Home'; 
+import SignIn from './Pages/SignIn';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/lost" element={<Lost />} />
         <Route path="/found" element={<Found />} />
+        <Route path="/signin" element={<SignIn />} />
       </Routes>
     </div>
 
