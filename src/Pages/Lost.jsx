@@ -1,7 +1,6 @@
 
-
-
 import { useState } from 'react';
+import Navbar from '../components/Navbar';
 
 const Lost = () => {
   const [formData, setFormData] = useState({
@@ -38,7 +37,8 @@ const Lost = () => {
 
   return (
     <div className="relative min-h-screen bg-[linear-gradient(to_bottom,#000,#200D42_34%,#4F21A1_65%,#A46EDB_82%)] flex flex-col items-center pt-4 px-4">
-      <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-6 mt-10">
+      <Navbar />
+      <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-6 mt-25">
         <h1 className="text-2xl font-bold text-gray-800 mb-6 text-center">Report Lost Item</h1>
         
         <form onSubmit={handleSubmit} className="space-y-4">
