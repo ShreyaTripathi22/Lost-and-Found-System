@@ -15,15 +15,17 @@ const Navbar = () => {
     <div className="absolute top-0 left-0 w-full z-50 flex justify-between items-center px-10 py-6 bg-transparent text-white">
       <h1 className='text-5xl w-full font-bold'>FoundIt</h1>
         <ul className='hidden md:flex'>
-          <li className='p-4 text-2xl text-font:spoppins cursor-pointer hover:text-blue-600'>Home</li>
-          <li className='p-4 text-2xl cursor-pointer hover:text-blue-600'>
+          <li className='p-3 text-2xl text-font:spoppins cursor-pointer hover:text-blue-600'>
+            <Link to="/">Home</Link>
+          </li>
+          <li className='p-3 text-2xl cursor-pointer hover:text-blue-600'>
           <Link to="/lost">Lost</Link>
             </li>
-          <li className='p-4 text-2xl cursor-pointer hover:text-blue-600'>
+          <li className='p-3 text-2xl cursor-pointer hover:text-blue-600'>
             <Link to="/found">Found</Link>
           </li>
-          <li className='p-4 text-2xl  cursor-pointer hover:text-blue-600'>Contact</li>
-          <li className='p-4 text-2xl  cursor-pointer hover:text-blue-600'>
+          <li className='p-3 text-2xl  cursor-pointer hover:text-blue-600'>Contact</li>
+          <li className='p-3 text-2xl  cursor-pointer hover:text-blue-600'>
             <Link to="/signin">SignIn</Link>
           </li>
           

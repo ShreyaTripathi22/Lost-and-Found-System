@@ -69,7 +69,7 @@ const Lost = () => {
 
   return (
     <div className="h-screen bg-[linear-gradient(to_bottom,#000,#200D42_34%,#4F21A1_65%,#A46EDB_82%)] flex flex-col">
-      <Navbar />
+      
       
       <div className="flex flex-col  md:flex-row flex-grow h-full">
         {/* Left: Image Section */}
@@ -94,7 +94,7 @@ const Lost = () => {
           transition={{ duration: 0.5 }}
           className="w-full md:w-1/2 flex items-center justify-center p-4 md:p-8"
         >
-          <div className="bg-white/10 backdrop-blur-md rounded-xl shadow-2xl p-6 w-full mt-17 max-w-md">
+          <div className="backdrop-blur-md  p-6 w-full mt-17 max-w-md">
             <h2 className="text-3xl font-bold text-white mb-6 text-center">
               Report Lost Item
             </h2>
