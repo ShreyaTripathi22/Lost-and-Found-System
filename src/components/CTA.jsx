@@ -33,7 +33,7 @@ const CTA = () => {
             <button onClick={handleLostClick} className="bg-[#a124e9] text-white px-8 py-3 rounded-lg hover:bg-[#8a1bc7] transition-all">
               Report Lost Item
             </button>
-            <button onClick={handleFoundClick} className="bg-transparent border-2 border-[#a124e9] text-white px-8 py-3 rounded-lg hover:bg-[#a124e9] transition-all">
+            <button onClick= {handleFoundClick} className="bg-transparent border-2 border-[#a124e9] text-white px-8 py-3 rounded-lg hover:bg-[#a124e9] transition-all">
               Report Found Item
             </button>
           </div>

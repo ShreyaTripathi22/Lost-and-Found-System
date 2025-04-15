@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { howItWorksData } from '../data/contants';
 import styles from '../style';
 
-const Workings = () => {
+const Workings = forwardRef((props, ref) => {
   return (
-    <section className={`bg-black ${styles.paddingY} z-1 `}>
+    <section ref={ref} className={`bg-black ${styles.paddingY} z-1 `}>
       <div className="max-w-6xl mx-auto px-2 text-center">
         <h2 className="text-4xl font-bold text-white mb-4">How it Works?</h2>
         <p className="text-[17px] text-gray-400 max-w-3xl mx-auto">
@@ -29,6 +29,6 @@ const Workings = () => {
       </div>
     </section>
   );
-};
+});
 
 export default Workings;
