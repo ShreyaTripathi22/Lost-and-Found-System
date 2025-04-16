@@ -1,20 +1,17 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaUser, FaLock, FaEnvelope, FaEye, FaEyeSlash, FaCheck } from 'react-icons/fa';
+import { FaLock, FaEnvelope, FaEye, FaEyeSlash } from 'react-icons/fa';
 
-const SignIn = () => {
+const Login = () => {
   const [formData, setFormData] = useState({
-    fullName: '',
     email: '',
     password: '',
-    confirmPassword: '',
-    agreeTerms: false
+    rememberMe: false
   });
 
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [passwordError, setPasswordError] = useState('');
+  const [loginError, setLoginError] = useState('');
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -23,41 +20,25 @@ const SignIn = () => {
       [name]: type === 'checkbox' ? checked : value
     });
     
-    // Clear password error when user types in password fields
-    if (name === 'password' || name === 'confirmPassword') {
-      setPasswordError('');
-    }
-  };
-
-  const validatePasswords = () => {
-    if (formData.password !== formData.confirmPassword) {
-      setPasswordError('Passwords do not match');
-      return false;
-    }
-    if (formData.password.length < 8) {
-      setPasswordError('Password must be at least 8 characters long');
-      return false;
-    }
-    return true;
+    // Clear any previous login errors when user starts typing
+    if (loginError) setLoginError('');
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    if (!validatePasswords()) {
+    // Simple validation (you would typically handle this with a backend)
+    if (!formData.email || !formData.password) {
+      setLoginError('Please enter both email and password');
       return;
     }
     
-    console.log('Sign up form submitted:', formData);
-    // Handle signup logic here
+    console.log('Login form submitted:', formData);
+    // Here you would handle login logic, API calls, etc.
   };
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
-  };
-
-  const toggleConfirmPasswordVisibility = () => {
-    setShowConfirmPassword(!showConfirmPassword);
   };
 
   return (
@@ -75,9 +56,9 @@ const SignIn = () => {
             transition={{ delay: 0.3, duration: 0.8 }}
             className="text-4xl font-bold text-white"
           >
-            Create Account
+            Welcome Back
           </motion.h1>
-          <p className="text-gray-300 mt-2">Join us and start your journey</p>
+          <p className="text-gray-300 mt-2">Sign in to continue your journey</p>
         </div>
         
         <motion.div 
@@ -86,24 +67,20 @@ const SignIn = () => {
           transition={{ delay: 0.2, duration: 0.5 }}
           className="bg-white/10 backdrop-blur-md rounded-xl shadow-2xl p-8 border border-white/20"
         >
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div>
-              <label htmlFor="fullName" className="block text-sm font-medium text-white mb-2 flex items-center">
-                <FaUser className="mr-2 text-purple-400" />
-                Full Name
-              </label>
-              <input
-                type="text"
-                id="fullName"
-                name="fullName"
-                value={formData.fullName}
-                onChange={handleChange}
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#a124e9] text-white placeholder-gray-400"
-                placeholder="Enter your full name"
-                required
-              />
-            </div>
-            
+          {loginError && (
+            <motion.div 
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mb-4 p-3 bg-red-500/20 border border-red-500/50 rounded-lg"
+            >
+              <p className="text-white text-sm flex items-center">
+                <span className="mr-2">⚠️</span>
+                {loginError}
+              </p>
+            </motion.div>
+          )}
+          
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-white mb-2 flex items-center">
                 <FaEnvelope className="mr-2 text-purple-400" />
@@ -145,69 +122,39 @@ const SignIn = () => {
                   {showPassword ? <FaEyeSlash /> : <FaEye />}
                 </button>
               </div>
-              <p className="text-xs text-gray-300 mt-1">Must be at least 8 characters long</p>
             </div>
             
-            <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-white mb-2 flex items-center">
-                <FaLock className="mr-2 text-purple-400" />
-                Confirm Password
-              </label>
-              <div className="relative">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
                 <input
-                  type={showConfirmPassword ? "text" : "password"}
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  value={formData.confirmPassword}
+                  type="checkbox"
+                  id="rememberMe"
+                  name="rememberMe"
+                  checked={formData.rememberMe}
                   onChange={handleChange}
-                  className={`w-full px-4 py-3 bg-white/5 border ${
-                    passwordError ? 'border-red-500' : 'border-white/10'
-                  } rounded-lg focus:outline-none focus:ring-2 focus:ring-[#a124e9] text-white placeholder-gray-400`}
-                  placeholder="••••••••"
-                  required
+                  className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
                 />
-                <button 
-                  type="button" 
-                  onClick={toggleConfirmPasswordVisibility}
-                  className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-white"
-                >
-                  {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
-                </button>
+                <label htmlFor="rememberMe" className="ml-2 block text-sm text-gray-300">
+                  Remember me
+                </label>
               </div>
-              {passwordError && (
-                <motion.p 
-                  initial={{ opacity: 0, y: -5 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="text-sm text-red-400 mt-1"
-                >
-                  {passwordError}
-                </motion.p>
-              )}
-            </div>
-            
-            <div className="flex items-center">
-              <input
-                type="checkbox"
-                id="agreeTerms"
-                name="agreeTerms"
-                checked={formData.agreeTerms}
-                onChange={handleChange}
-                className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
-                required
-              />
-              <label htmlFor="agreeTerms" className="ml-2 block text-sm text-gray-300">
-                I agree to the <a href="#" className="text-purple-400 hover:text-purple-300 underline">Terms and Conditions</a>
-              </label>
+              <div className="text-sm">
+                <a href="#" className="font-medium text-purple-400 hover:text-purple-300">
+                  Forgot your password?
+                </a>
+              </div>
             </div>
             
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               type="submit"
-              className="w-full px-6 py-3 bg-gradient-to-r from-[#a124e9] to-[#8a1bc7] text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center mt-6"
+              className="w-full px-6 py-3 bg-gradient-to-r from-[#a124e9] to-[#8a1bc7] text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center"
             >
-              Create Account
-              <FaCheck className="ml-2" />
+              Sign In
+              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
             </motion.button>
           </form>
           
@@ -217,7 +164,7 @@ const SignIn = () => {
                 <div className="w-full border-t border-white/10"></div>
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white/5 text-gray-300">Or sign up with</span>
+                <span className="px-2 bg-white/5 text-gray-300">Or continue with</span>
               </div>
             </div>
             
@@ -243,9 +190,9 @@ const SignIn = () => {
         
         <div className="mt-8 text-center">
           <p className="text-white">
-            Already have an account?{' '}
-            <Link to="/login" className="font-medium text-white hover:text-purple-300 underline">
-              Login
+            Don't have an account?{' '}
+            <Link to="/signin" className="font-medium text-white hover:text-purple-300 underline">
+              Create one now
             </Link>
           </p>
         </div>
@@ -254,4 +201,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default Login;
