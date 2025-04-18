@@ -9,7 +9,7 @@ let postRoutes = express.Router()
 
 postRoutes.route("/posts").get(async (request, response) => {
     let db = getDb()
-    let data = await db.collection("posts").find({}).toArray()
+    let data = await db.collection("Found Items").find({}).toArray()
     if(data.length >0){
         response.json(data)
     }
@@ -21,7 +21,7 @@ postRoutes.route("/posts").get(async (request, response) => {
 //#2 Retrieve One
 postRoutes.route("/posts/:id").get(async (request, response) => {
     let db = getDb()
-    let data = await db.collection("posts").findOne({_id: new ObjectId(request.params.id)});
+    let data = await db.collection("Found Items").findOne({_id: new ObjectId(request.params.id)});
      if(Object.keys(data).length>0){
         response.json(data)
     }
@@ -38,7 +38,7 @@ postRoutes.route("/posts").post (async (request, response) => {
         description : request.body.description,
         location : request.body.location,
     }
-    let data = await db.collection("posts").insertOne(mongoObject)
+    let data = await db.collection("Found Items").insertOne(mongoObject)
      response.json(data)
 })
 
@@ -46,7 +46,7 @@ postRoutes.route("/posts").post (async (request, response) => {
 
 postRoutes.route("/posts/:id").delete(async (request, response) => {
     let db = database.getDb();
-    let data = await db.collection("posts").deleteOne({_id: new ObjectId(request.params.id)});
+    let data = await db.collection("Found Items").deleteOne({_id: new ObjectId(request.params.id)});
     response.json(data)
 });
 
