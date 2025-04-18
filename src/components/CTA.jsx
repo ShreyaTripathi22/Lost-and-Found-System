@@ -1,9 +1,21 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
+
 const CTA = () => {
+  const navigate = useNavigate();
+
+  const handleLostClick =() =>{
+    navigate('/lost');
+  }
+
+  const handleFoundClick =() =>{
+    navigate('/found');
+  }
+
   return (
-    <section className="py-20 bg-[#200D42]">
+      <section className="py-20 bg-[#200D42]">
       <div className="max-w-4xl mx-auto px-4 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -18,10 +30,10 @@ const CTA = () => {
             It's quick, easy, and free to get started!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-[#a124e9] text-white px-8 py-3 rounded-lg hover:bg-[#8a1bc7] transition-all">
+            <button onClick={handleLostClick} className="bg-[#a124e9] text-white px-8 py-3 rounded-lg hover:bg-[#8a1bc7] transition-all">
               Report Lost Item
             </button>
-            <button className="bg-transparent border-2 border-[#a124e9] text-white px-8 py-3 rounded-lg hover:bg-[#a124e9] transition-all">
+            <button onClick= {handleFoundClick} className="bg-transparent border-2 border-[#a124e9] text-white px-8 py-3 rounded-lg hover:bg-[#a124e9] transition-all">
               Report Found Item
             </button>
           </div>

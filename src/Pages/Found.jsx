@@ -101,7 +101,7 @@ const Found = () => {
           transition={{ duration: 0.5 }}
           className="w-full md:w-1/2 flex items-center justify-center p-4 md:p-8"
         >
-          <div className="backdrop-blur-md p-6 w-full mt-17 max-w-md">
+          <div className="backdrop-blur-md p-6 w-full mt-10 h-screen max-w-md">
             <h2 className="text-3xl font-bold text-white mb-6 text-center">
               Report Found Item
             </h2>
@@ -206,7 +206,7 @@ const Found = () => {
                       </div>
                     ) : (
                       <>
-                        <FaCamera className="mx-auto h-12 w-12 text-gray-400" />
+                        <FaCamera className="mx-auto w-12 text-gray-400" />
                         <div className="flex text-sm text-gray-400">
                           <label className="relative cursor-pointer rounded-md font-medium text-[#a124e9] hover:text-[#8a1bc7] focus-within:outline-none">
                             <span>Upload a file</span>
