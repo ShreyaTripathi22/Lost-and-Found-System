@@ -1,10 +1,10 @@
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
+import { MongoClient, ServerApiVersion } from 'mongodb';
 import dotenv from 'dotenv';
 
 dotenv.config({ path: './config.env' });
 
-const client = new MongoClient(uri, {
+const client = new MongoClient(process.env.URI, {
   serverApi: {
     version: ServerApiVersion.v1,
     strict: true,
@@ -14,7 +14,7 @@ const client = new MongoClient(uri, {
 
 let database;
 
-export const connectToServer () =>{
+export const connectToServer = () =>{
     database = client.db("FoundIt");
 };
 
