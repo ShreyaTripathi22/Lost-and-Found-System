@@ -20,21 +20,21 @@ const Login = () => {
       [name]: type === 'checkbox' ? checked : value
     });
     
-    // Clear any previous login errors when user starts typing
+    
     if (loginError) setLoginError('');
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    // Simple validation (you would typically handle this with a backend)
+    
     if (!formData.email || !formData.password) {
       setLoginError('Please enter both email and password');
       return;
     }
     
     console.log('Login form submitted:', formData);
-    // Here you would handle login logic, API calls, etc.
+   
   };
 
   const togglePasswordVisibility = () => {

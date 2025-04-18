@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { motion } from 'framer-motion';
 import { FaRobot, FaMapMarkerAlt, FaUsers, FaShieldAlt } from 'react-icons/fa';
 

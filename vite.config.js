@@ -9,14 +9,3 @@ export default defineConfig({
     tailwindcss(),
   ],
 })
-module.exports = {
-  content: ['./src/**/*.{js,jsx,ts,tsx,html}'],
-  theme: {
-    extend: {
-      fontFamily: {
-        gothic: ['"Special Gothic Expanded One"', 'sans-serif'],
-      },
-    },
-  },
-  plugins: [],
-}
