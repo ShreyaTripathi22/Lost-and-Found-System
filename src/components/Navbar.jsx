@@ -24,7 +24,9 @@ const Navbar = () => {
           <li className='p-3 text-2xl cursor-pointer hover:text-blue-600'>
             <Link to="/found">Found</Link>
           </li>
-          <li className='p-3 text-2xl  cursor-pointer hover:text-blue-600'>Contact</li>
+          {/*}
+           <li className='p-3 text-2xl  cursor-pointer hover:text-blue-600'>Contact</li>
+                                                                            {*/}
           <li className='p-3 text-2xl  cursor-pointer hover:text-blue-600'>
             <Link to="/signin">SignIn</Link>
           </li>

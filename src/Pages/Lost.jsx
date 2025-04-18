@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Navbar from '../components/Navbar';
 import { motion } from 'framer-motion';
 import { FaCamera, FaMapMarkerAlt, FaCalendarAlt, FaSearch, FaExclamationCircle } from 'react-icons/fa';
 
@@ -94,7 +93,7 @@ const Lost = () => {
           transition={{ duration: 0.5 }}
           className="w-full md:w-1/2 flex items-center justify-center p-4 md:p-8"
         >
-          <div className="backdrop-blur-md  p-6 w-full mt-17 max-w-md">
+          <div className="backdrop-blur-md  p-6 w-full mt-9 max-w-md">
             <h2 className="text-3xl font-bold text-white mb-6 text-center">
               Report Lost Item
             </h2>
@@ -126,7 +125,7 @@ const Lost = () => {
                   value={formData.description}
                   onChange={handleChange}
                   rows="3"
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#a124e9] text-white placeholder-gray-400"
+                  className="w-full h-20 px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#a124e9] text-white placeholder-gray-400"
                   placeholder="Provide detailed description of the item..."
                   required
                 ></textarea>

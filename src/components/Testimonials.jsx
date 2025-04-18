@@ -15,7 +15,7 @@ const Testimonials = () => {
       text: 'I found someone\'s wallet and used FoundIt to return it. The process was smooth and secure. Great platform!',
       avatar: 'https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.jpg?semt=ais_hybrid&w=740',
     },
-    // Add more testimonials as needed
+    
   ];
 
   return (
