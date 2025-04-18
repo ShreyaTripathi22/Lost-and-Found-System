@@ -14,6 +14,7 @@ const client = new MongoClient(uri, {
 
 let database;
 
+export const connectToServer = () =>{
     database = client.db("FoundIt");
 };
 
