@@ -37,6 +37,8 @@ postRoutes.route("/posts").post (async (request, response) => {
         name : request.body.name,
         description : request.body.description,
         location : request.body.location,
+        image: request.body.image,
+        date: request.body.date
     }
     let data = await db.collection("Found Items").insertOne(mongoObject)
      response.json(data)
@@ -45,7 +47,7 @@ postRoutes.route("/posts").post (async (request, response) => {
 //#4 delete one
 
 postRoutes.route("/posts/:id").delete(async (request, response) => {
-    let db = database.getDb();
+    let db = getDb();
     let data = await db.collection("Found Items").deleteOne({_id: new ObjectId(request.params.id)});
     response.json(data)
 });

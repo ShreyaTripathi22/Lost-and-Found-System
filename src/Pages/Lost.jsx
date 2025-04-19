@@ -61,9 +61,45 @@ const Lost = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+  
+    const data = new FormData();
+    data.append("itemName", formData.itemName);
+    data.append("description", formData.description);
+    data.append("date", formData.date);
+    data.append("location", formData.location);
+    if (formData.image) {
+      data.append("image", formData.image);
+    }
+  
+    try {
+      const response = await fetch("http://localhost:3000/lost", {
+        method: "POST",
+        body: data,
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to submit lost item report");
+      }
+  
+      const result = await response.json();
+      console.log("Lost item submitted successfully:", result);
+  
+      // Reset form
+      setFormData({
+        itemName: '',
+        description: '',
+        date: '',
+        location: '',
+        image: null,
+      });
+      setImagePreview(null);
+      alert("Lost item reported successfully!");
+    } catch (error) {
+      console.error("Error submitting lost item:", error);
+      alert("Error submitting lost item");
+    }
   };
 
   return (

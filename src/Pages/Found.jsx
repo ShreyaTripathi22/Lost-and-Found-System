@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaCamera, FaMapMarkerAlt, FaCalendarAlt, FaSearch, FaExclamationCircle } from 'react-icons/fa';
+import { createPost } from '../../api';
 
 const Found = () => {
   const [formData, setFormData] = useState({
@@ -63,7 +64,7 @@ const Found = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  async function handleSubmit(e){
     e.preventDefault();
     
     // Validate image is present since it's compulsory
@@ -71,9 +72,33 @@ const Found = () => {
       setImageError(true);
       return;
     }
-    
-    console.log('Form submitted:', formData);
-    // Here you would typically send the data to your backend
+
+    const submissionData = new FormData();
+    submissionData.append("name", formData.itemName);
+    submissionData.append("description", formData.description);
+    submissionData.append("location", formData.location);
+    submissionData.append("date", formData.date);
+    submissionData.append("image", formData.image); // this is the file
+
+    try {
+      const response = await fetch("http://localhost:3000/single", {
+        method: "POST",
+        body: submissionData,
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        alert("Found item submitted successfully!");
+        // Optionally reset form here
+      } else {
+        console.error("Error submitting:", result);
+        alert("Error while submitting the form.");
+      }
+    } catch (err) {
+      console.error("Error submitting form:", err);
+      alert("Something went wrong!");
+    }
+
   };
 
   return (
