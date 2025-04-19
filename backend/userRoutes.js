@@ -2,6 +2,8 @@ import express from "express";
 import { getDb } from "./connect.js";
 import { ObjectId } from "mongodb";
 import bcrypt from "bcrypt"; 
+import jwt from "jsonwebtoken";
+
 
 let userRoutes = express.Router()
 const SALT_ROUNDS =6;
@@ -78,6 +80,28 @@ userRoutes.route("/users/:id").delete(async (request, response) => {
     let data = await db.collection("Users").deleteOne({_id: new ObjectId(request.params.id)});
     response.json(data)
 });
+
+
+// 6 LOGIN
+
+userRoutes.route("/users/login").post (async (request, response) => {
+    let db = getDb()
+
+    const user = await db.collection("Users").findOne({email: request.body.email});
+
+    if(user){
+        let confirmation = await bcrypt.compare(request.body.password, user.password)
+        if(confirmation){
+            response.json({success:true, user})
+        }else{
+            response.json({success:false, message:"Incorrect Password"})
+        }
+
+    }else{
+        response.json({success:false, message:"User not found"})
+    }    
+})
+
 
 export default userRoutes;
 

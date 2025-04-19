@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { FaUser, FaLock, FaEnvelope, FaEye, FaEyeSlash, FaCheck } from 'react-icons/fa';
 import { createUsers } from '../../api'; 
 import { useNavigate } from "react-router-dom";
+import Navbar from '../components/Navbar';
 import AccountCreatedPopup from '../components/AccountCreatedPopup';
 
 const SignIn = () => {
@@ -96,13 +97,15 @@ const SignIn = () => {
 
   return (
     <div className="relative min-h-screen bg-[linear-gradient(to_bottom,#000,#200D42_34%,#4F21A1_65%,#A46EDB_82%)] flex flex-col items-center justify-center px-4">
+      <Navbar />
       <motion.div 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         className="w-full max-w-md"
       >
-        <div className="text-center mb-8 mt-10">
+      
+        <div className="text-center mb-8 mt-25">
           <motion.h1 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

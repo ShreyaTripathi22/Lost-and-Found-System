@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import Navbar from '../components/Navbar';
 import { FaLock, FaEnvelope, FaEye, FaEyeSlash } from 'react-icons/fa';
+import { verifyUser } from '../../api';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +11,8 @@ const Login = () => {
     password: '',
     rememberMe: false
   });
+
+  const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
   const [loginError, setLoginError] = useState('');
@@ -24,7 +28,7 @@ const Login = () => {
     if (loginError) setLoginError('');
   };
 
-  const handleSubmit = (e) => {
+  async function handleSubmit(e){
     e.preventDefault();
     
     
@@ -33,7 +37,16 @@ const Login = () => {
       return;
     }
     
-    console.log('Login form submitted:', formData);
+    let response = await verifyUser(formData)
+    if(response){
+      //console.log('Login form submitted:', formData);
+      navigate("/");
+    }else{
+      alert("Login failed")
+    }
+
+
+    //console.log('Login form submitted:', formData);
    
   };
 
@@ -43,13 +56,15 @@ const Login = () => {
 
   return (
     <div className="relative min-h-screen bg-[linear-gradient(to_bottom,#000,#200D42_34%,#4F21A1_65%,#A46EDB_82%)] flex flex-col items-center justify-center px-4">
+      <Navbar />
       <motion.div 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         className="w-full max-w-md"
       >
-        <div className="text-center mb-8">
+        
+        <div className="text-center mt-8 mb-8">
           <motion.h1 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
