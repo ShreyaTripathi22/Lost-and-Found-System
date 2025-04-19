@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaUser, FaLock, FaEnvelope, FaEye, FaEyeSlash, FaCheck } from 'react-icons/fa';
+import { createUsers } from '../../api'; 
+import { useNavigate } from "react-router-dom";
+import AccountCreatedPopup from '../components/AccountCreatedPopup';
 
 const SignIn = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +18,9 @@ const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [passwordError, setPasswordError] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
+  const [userName, setUserName] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -41,15 +47,43 @@ const SignIn = () => {
     return true;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit =async (e) => {
     e.preventDefault();
     
     if (!validatePasswords()) {
       return;
     }
     
-    console.log('Sign up form submitted:', formData);
+    //console.log('Sign up form submitted:', formData);
     // Handle signup logic here
+    try {
+      const user = {
+        name: formData.fullName,
+        email: formData.email,
+        password: formData.password
+      };
+  
+      const res = await createUsers(user);
+      console.log("User created!", res.data);
+  
+      // redirect or show success message
+      const popup = document.createElement("div");
+    popup.innerText = `Welcome, ${formData.fullName}. Your account is created.`;
+    popup.className =
+      "fixed top-10 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-6 py-3 rounded-2xl shadow-lg z-50 text-center text-lg font-medium transition-all duration-500";
+    document.body.appendChild(popup);
+
+    // Navigate after delay
+    setTimeout(() => {
+      popup.remove();
+      navigate("/login");
+    }, 3500);
+    //error control below
+
+    } catch (err) {
+      console.error("Signup error:", err);
+    }
+
   };
 
   const togglePasswordVisibility = () => {

@@ -35,3 +35,28 @@ export async function deletePost(id) {
     return response
  
 }
+
+//USER FUNCTIONS
+
+export async function getUser(id) {
+    const response = await axios.get(`${URL}/users/${id}`)
+
+    if(response.status === 200){
+        return response.data
+    }else{
+        return
+    }
+    
+}
+export async function createUsers(user) {
+    const response = await axios.post(`${URL}/users`, user)
+    return response
+ 
+}
+
+
+export async function deleteUser(id) {
+    const response = await axios.delete(`${URL}/users/${id}`)
+    return response
+ 
+}

@@ -3,6 +3,7 @@ import {connectToServer, getDb} from "./connect.js";
 import express from "express";
 import cors from "cors";
 import postRoutes from './postRoutes.js';
+import userRoutes from './userRoutes.js';
 
 import multer from 'multer';
 import path from 'path';
@@ -92,6 +93,7 @@ app.post("/lost", upload.single("image"), async (req, res) => {
 
 
 app.use('/', postRoutes);
+app.use('/', userRoutes);
 
 app.listen(PORT, () =>{
     connectToServer()
