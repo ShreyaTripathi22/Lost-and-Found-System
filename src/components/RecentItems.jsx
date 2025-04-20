@@ -1,7 +1,14 @@
 import React from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 const RecentItems = () => {
+  const Navigate = useNavigate();
+
+  const handleOnclick=()=>{
+    Navigate('/FoundItems');
+  }
+
   const items = [
     {
       type: 'Lost',
@@ -50,7 +57,7 @@ const RecentItems = () => {
           ))}
         </div>
         <div className="text-center mt-12">
-          <button className="bg-[#a124e9] text-white px-8 py-3 rounded-lg hover:bg-[#8a1bc7] transition-all">
+          <button onClick={handleOnclick} className="bg-[#a124e9] text-white px-8 py-3 rounded-lg hover:bg-[#8a1bc7] transition-all">
             View All Items
           </button>
         </div>

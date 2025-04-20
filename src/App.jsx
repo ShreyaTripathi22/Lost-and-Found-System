@@ -8,6 +8,7 @@ import Found from './Pages/Found';
 import Home from './Pages/Home'; 
 import SignIn from './Pages/SignIn';
 import Login from './Pages/Login';
+import FoundItems from './Pages/FoundItems';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/found" element={<Found />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/FoundItems" element={<FoundItems />} />
       </Routes>
     </div>
 
