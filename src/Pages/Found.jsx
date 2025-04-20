@@ -9,7 +9,8 @@ const Found = () => {
     description: '',
     date: '',
     location: '',
-    image: null
+    image: null,
+    email: ''
   });
 
   const [imagePreview, setImagePreview] = useState(null);
@@ -79,7 +80,8 @@ const Found = () => {
     submissionData.append("location", formData.location);
     submissionData.append("date", formData.date);
     submissionData.append("image", formData.image); // this is the file
-
+    submissionData.append("email", formData.email);
+    
     try {
       const response = await fetch("http://localhost:3000/single", {
         method: "POST",
@@ -258,6 +260,20 @@ const Found = () => {
                     )}
                   </div>
                 </div>
+              </div>
+              <div>
+                <label className="text-white text-sm font-medium mb-2 flex items-center">
+                  📧 Finder's Email*
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#a124e9] text-white placeholder-gray-400"
+                  placeholder="Your email for contact"
+                  required
+                />
               </div>
               
               <motion.button

@@ -1,4 +1,5 @@
 import express from "express";
+import nodemailer from "nodemailer";
 import { getDb } from "./connect.js";
 import { ObjectId } from "mongodb";
 
@@ -51,6 +52,8 @@ postRoutes.route("/posts/:id").delete(async (request, response) => {
     let data = await db.collection("Found Items").deleteOne({_id: new ObjectId(request.params.id)});
     response.json(data)
 });
+
+
 
 export default postRoutes;
 

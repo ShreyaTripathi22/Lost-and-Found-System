@@ -4,6 +4,7 @@ import express from "express";
 import cors from "cors";
 import postRoutes from './postRoutes.js';
 import userRoutes from './userRoutes.js';
+import emailRoutes from "./emailRoutes.js";
 
 import multer from 'multer';
 import path from 'path';
@@ -50,7 +51,8 @@ app.post("/single", upload.single("image"), async (req,res)=>{
         Description: req.body.description,
         Location: req.body.location,
         Image: filename, // or originalname if you prefer
-        Date: new Date(req.body.date)
+        Date: new Date(req.body.date),
+        Email: req.body.email
     };
 
   
@@ -94,6 +96,7 @@ app.post("/lost", upload.single("image"), async (req, res) => {
 
 app.use('/', postRoutes);
 app.use('/', userRoutes);
+app.use("/api/email", emailRoutes);
 
 app.listen(PORT, () =>{
     connectToServer()
