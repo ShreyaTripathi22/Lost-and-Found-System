@@ -1,4 +1,4 @@
-import React, { useState }  from 'react'
+import React, { useState, useEffect }  from 'react'
 import { LuMenu } from "react-icons/lu";
 import { IoMdClose } from "react-icons/io";
 import { Link } from 'react-router-dom';
@@ -6,6 +6,13 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
+  const [userName, setUserName] = useState(null);
+
+  useEffect(() => {
+    const storedName = localStorage.getItem("userName");
+    if (storedName) setUserName(storedName);
+  }, []);
+
 
   const handleNav=()=>{
       setNav(!nav);
@@ -28,7 +35,15 @@ const Navbar = () => {
            <li className='p-3 text-2xl  cursor-pointer hover:text-blue-600'>Contact</li>
                                                                             {*/}
           <li className='p-3 text-2xl  cursor-pointer hover:text-blue-600'>
-            <Link to="/signin">SignIn</Link>
+            {/*<Link to="/signin">SignIn</Link>*/}
+            {/*TEMPORARY CHANGE ONLY, ALSO IN SignIn.jsx*/}
+            <div>
+              {userName ? (
+                <Link to="/profile" className="text-white hover:text-purple-300">Profile</Link>
+              ) : (
+                <Link to="/SignIn" className="text-white hover:text-purple-300">Signin</Link>
+              )}
+            </div>
           </li>
           
         </ul>

@@ -8,6 +8,7 @@ const Lost = () => {
     description: '',
     date: '',
     location: '',
+    email: '', 
     image: null
   });
 
@@ -69,6 +70,7 @@ const Lost = () => {
     data.append("description", formData.description);
     data.append("date", formData.date);
     data.append("location", formData.location);
+    data.append("email", formData.email);
     if (formData.image) {
       data.append("image", formData.image);
     }
@@ -199,6 +201,21 @@ const Lost = () => {
                   />
                 </div>
               </div>
+
+              <div>
+                <label className="text-white text-sm font-medium mb-2 flex items-center">
+                  📧 Email Address*
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#a124e9] text-white placeholder-gray-400"
+                  placeholder="Enter your email"
+                  required
+                />
+              </div>
               
               <div>
                 <label className="block text-white text-sm font-medium mb-2 flex items-center">
@@ -256,7 +273,7 @@ const Lost = () => {
                   </div>
                 </div>
               </div>
-              
+
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}

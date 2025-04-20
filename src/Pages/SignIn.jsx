@@ -66,6 +66,9 @@ const SignIn = () => {
   
       const res = await createUsers(user);
       console.log("User created!", res.data);
+
+      //TEMPORARY WILL CHANGE LATER
+      localStorage.setItem("userName", formData.fullName);
   
       // redirect or show success message
       const popup = document.createElement("div");
