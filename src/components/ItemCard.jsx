@@ -11,7 +11,7 @@ export function ItemCard({ item, onClick }) {
         <img
           src={`http://localhost:3000/uploads/${item.Image}`}
           alt={item.Name}
-          className="w-full h-48 object-cover rounded-xl"
+          className="w-full h-full object-cover rounded-xl"
         />
       </div>
       <div className="p-4">
