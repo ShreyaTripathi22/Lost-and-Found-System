@@ -41,6 +41,7 @@ const Login = () => {
     if(response){
       //console.log('Login form submitted:', formData);
       navigate("/");
+      sessionStorage.setItem("User", response)
     }else{
       alert("Login failed")
     }

@@ -68,7 +68,7 @@ const SignIn = () => {
       console.log("User created!", res.data);
 
       //TEMPORARY WILL CHANGE LATER
-      localStorage.setItem("userName", formData.fullName);
+      //localStorage.setItem("userName", formData.fullName);
   
       // redirect or show success message
       const popup = document.createElement("div");
@@ -83,7 +83,7 @@ const SignIn = () => {
       navigate("/login");
     }, 3500);
     //error control below
-
+    
     } catch (err) {
       console.error("Signup error:", err);
     }

@@ -3,6 +3,9 @@ import { getDb } from "./connect.js";
 import { ObjectId } from "mongodb";
 import bcrypt from "bcrypt"; 
 import jwt from "jsonwebtoken";
+import dotenv from 'dotenv';
+dotenv.config({ path: './config.env' });
+
 
 
 let userRoutes = express.Router()
@@ -92,7 +95,8 @@ userRoutes.route("/users/login").post (async (request, response) => {
     if(user){
         let confirmation = await bcrypt.compare(request.body.password, user.password)
         if(confirmation){
-            response.json({success:true, user})
+            const token = jwt.sign(user,process.env.SECRET_KEY)
+            response.json({success:true, token})
         }else{
             response.json({success:false, message:"Incorrect Password"})
         }

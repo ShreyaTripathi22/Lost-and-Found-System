@@ -1,71 +1,85 @@
-import React, { useState, useEffect }  from 'react'
+import React, { useState, useEffect } from 'react';
 import { LuMenu } from "react-icons/lu";
 import { IoMdClose } from "react-icons/io";
 import { Link } from 'react-router-dom';
-
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const [userName, setUserName] = useState(null);
 
   useEffect(() => {
-    const storedName = localStorage.getItem("userName");
+    const storedName = sessionStorage.getItem("User");
     if (storedName) setUserName(storedName);
   }, []);
 
-
-  const handleNav=()=>{
-      setNav(!nav);
-   };
+  const handleNav = () => {
+    setNav(!nav);
+  };
 
   return (
-    <div className="absolute top-0 left-0 w-full z-50 flex justify-between items-center px-10 py-6 bg-transparent text-white">
-      <h1 className='text-5xl w-full font-bold'>FoundIt</h1>
-        <ul className='hidden md:flex'>
-          <li className='p-3 text-2xl text-font:spoppins cursor-pointer hover:text-blue-600'>
-            <Link to="/">Home</Link>
-          </li>
-          <li className='p-3 text-2xl cursor-pointer hover:text-blue-600'>
-          <Link to="/lost">Lost</Link>
-            </li>
-          <li className='p-3 text-2xl cursor-pointer hover:text-blue-600'>
-            <Link to="/found">Found</Link>
-          </li>
-          {/*}
-           <li className='p-3 text-2xl  cursor-pointer hover:text-blue-600'>Contact</li>
-                                                                            {*/}
-          <li className='p-3 text-2xl  cursor-pointer hover:text-blue-600'>
-            {/*<Link to="/signin">SignIn</Link>*/}
-            {/*TEMPORARY CHANGE ONLY, ALSO IN SignIn.jsx*/}
-            <div>
-              {userName ? (
-                <Link to="/profile" className="text-white hover:text-purple-300">Profile</Link>
-              ) : (
-                <Link to="/SignIn" className="text-white hover:text-purple-300">Signin</Link>
-              )}
-            </div>
-          </li>
-          
-        </ul>
-        <div onClick={handleNav} className='block md:hidden mx-auto px-10'>
-          {!nav? <LuMenu size={25}/>:<IoMdClose size={25} />}
-        </div>
-        <div className={nav?'fixed top-10 right-0 p-12 my-12 bg-gray-800 h-full w-[40%] ease-in-out duration-500':'fixed right-[-100%] ease-in-out duration-500 '}>
-        <ul className='uppercase p-4 '>
-          <li className='p-4  cursor-pointer hover:text-blue-600'>Home</li>
-          <li className='p-4 text-2xl cursor-pointer hover:text-blue-600'>
-                <Link to="/lost">Lost</Link>
-          </li>
-          <li className='p-4 text-2xl cursor-pointer hover:text-blue-600'>
-              <Link to="/found">Found</Link>
-          </li>
-          <li className='p-4  cursor-pointer hover:text-blue-600'>Contact</li>
-          <li className='p-4  cursor-pointer hover:text-blue-600'>SignIn</li>
-        </ul>
+    <nav className="fixed top-0 left-0 w-full z-50 bg-transparent bg-opacity-70 backdrop-blur-md text-white px-6 py-4 flex justify-between items-center shadow-md">
+      <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+        <Link to="/">FoundIt</Link>
+      </h1>
 
-        </div>
-    </div>
-  )
-}
+      {/* Desktop Menu */}
+      <ul className="hidden md:flex gap-6 text-lg items-center">
+        <li className="hover:text-blue-500 transition">
+          <Link to="/">Home</Link>
+        </li>
+        <li className="hover:text-blue-500 transition">
+          <Link to="/lost">Lost</Link>
+        </li>
+        <li className="hover:text-blue-500 transition">
+          <Link to="/found">Found</Link>
+        </li>
+        <li className="hover:text-blue-500 transition">
+          <Link to="/contact">Contact</Link>
+        </li>
+        <li className="hover:text-purple-300 transition">
+          {userName ? (
+            <Link to="/profile">Profile</Link>
+          ) : (
+            <Link to="/SignIn">Signin</Link>
+          )}
+        </li>
+      </ul>
+
+      {/* Mobile Icon */}
+      <div onClick={handleNav} className="md:hidden cursor-pointer">
+        {nav ? <IoMdClose size={28} /> : <LuMenu size={28} />}
+      </div>
+
+      {/* Mobile Menu */}
+      <div
+        className={`fixed top-0 right-0 h-full w-[70%] bg-gray-900 bg-opacity-95 backdrop-blur-lg p-6 transition-transform duration-300 ease-in-out ${
+          nav ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
+        <ul className="flex flex-col gap-6 mt-14 text-lg">
+          <li className="hover:text-blue-400 transition">
+            <Link to="/" onClick={handleNav}>Home</Link>
+          </li>
+          <li className="hover:text-blue-400 transition">
+            <Link to="/lost" onClick={handleNav}>Lost</Link>
+          </li>
+          <li className="hover:text-blue-400 transition">
+            <Link to="/found" onClick={handleNav}>Found</Link>
+          </li>
+          <li className="hover:text-blue-400 transition">
+            <Link to="/contact" onClick={handleNav}>Contact</Link>
+          </li>
+          <li className="hover:text-purple-300 transition">
+            {userName ? (
+              <Link to="/profile" onClick={handleNav}>Profile</Link>
+            ) : (
+              <Link to="/SignIn" onClick={handleNav}>Signin</Link>
+            )}
+          </li>
+        </ul>
+      </div>
+    </nav>
+  );
+};
 
 export default Navbar;
