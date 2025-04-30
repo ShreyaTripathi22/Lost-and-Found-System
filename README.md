@@ -49,6 +49,7 @@ A modern, full-stack web application designed to help users report, browse, and 
 ```bash
 cd backend
 npm install
+```
 
 ### Create a .env file in the server/ directory:
 
@@ -60,9 +61,11 @@ EMAIL_PASS=your_app_password
 
 ```bash
 node server.js
+```
 
 ### Frontend Setup:
 
 ```bash
 npm install
 npm run dev
+```
