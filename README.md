@@ -50,4 +50,19 @@ A modern, full-stack web application designed to help users report, browse, and 
 cd backend
 npm install
 
+### Create a .env file in the server/ directory:
 
+MONGODB_URI=your_mongo_db_connection
+EMAIL_USER=your_gmail_email
+EMAIL_PASS=your_app_password
+
+### Run the backend server:
+
+```bash
+node server.js
+
+### Frontend Setup:
+
+```bash
+npm install
+npm run dev
