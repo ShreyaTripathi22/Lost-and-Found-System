@@ -53,9 +53,11 @@ npm install
 
 ### Create a .env file in the server/ directory:
 
+```bash
 MONGODB_URI=your_mongo_db_connection
 EMAIL_USER=your_gmail_email
 EMAIL_PASS=your_app_password
+```
 
 ### Run the backend server:
 
