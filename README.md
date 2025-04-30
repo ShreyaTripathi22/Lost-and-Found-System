@@ -47,6 +47,7 @@ A modern, full-stack web application designed to help users report, browse, and 
 ### Backend Setup:
 
 ```bash
-cd server
+cd backend
 npm install
+
 
