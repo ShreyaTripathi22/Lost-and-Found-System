@@ -1,27 +1,27 @@
-# 🧭 Lost & Found Tracking System
+# Lost & Found Tracking System
 
 A modern, full-stack web application designed to help users report, browse, and recover lost and found items through a smart, crowdsourced platform. Built using the MERN (MongoDB, Express.js, React.js, Node.js) stack, the system allows users to post reports, view items, and get notified when similar items are matched—streamlining the entire recovery process.
 
 ---
 
-## 🚀 Features
+##  Features
 
-- 🔍 **Post & Search Lost/Found Items**  
+-  **Post & Search Lost/Found Items**  
   Users can report lost or found items with location, date, and image.
 
-- 📨 **Email Notification System**  
+- **Email Notification System**  
   Auto-alerts are sent when matching lost/found items are detected.
 
-- 🔒 **Secure Authentication**  
+- **Secure Authentication**  
   Users can register and log in securely using hashed credentials.
 
-- 📸 **Image Upload**  
+- **Image Upload**  
   Found items can be submitted with photos via Multer for better identification.
 
-- 🧠 **Smart Matching Logic**  
+- **Smart Matching Logic**  
   If an item is reported lost, and a similar found item is posted within 3 days in the same location, an email alert is triggered.
 
-- ✅ **Claim Request Feature**  
+- **Claim Request Feature**  
   Lost item owners can send a claim request to the person who posted a matching found item.
 
 ---
@@ -37,7 +37,7 @@ A modern, full-stack web application designed to help users report, browse, and 
 
 ---
 
-## 🧪 Setup Instructions
+##  Setup Instructions
 
 ### Prerequisites:
 - Node.js
